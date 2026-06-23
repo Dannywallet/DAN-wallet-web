@@ -45,7 +45,7 @@ export default function Footer() {
           <div>
             <Link href="#top" className="flex items-center gap-2">
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src="/logo-src.png" alt="DAN Wallet" className="h-8 w-8" />
+              <img src={`${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}/logo-src.png`} alt="DAN Wallet" className="h-8 w-8" />
               <span className="text-lg font-bold tracking-tight">
                 Danny Wallet
               </span>

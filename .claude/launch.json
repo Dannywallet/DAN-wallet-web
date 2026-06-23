@@ -1,0 +1,17 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "dev",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "dev"],
+      "port": 3000
+    },
+    {
+      "name": "danny",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["--prefix", "C:/Work-AI/danny-wallet", "run", "dev", "--", "-p", "3100"],
+      "port": 3100
+    }
+  ]
+}

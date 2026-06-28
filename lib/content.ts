@@ -18,10 +18,10 @@ export const NAV_LINKS = [
 ] as const;
 
 export const TRUST_BADGES = [
-  "Recommended by Bitcoin.org",
-  "Audited by CertiK",
-  "Verified by WalletScrutiny",
-  "Bug bounty on Immunefi",
+  "Open source on GitHub",
+  "Non-custodial self-custody",
+  "AES-256-GCM encryption",
+  "Built on Danny Chain",
 ] as const;
 
 export type Feature = {

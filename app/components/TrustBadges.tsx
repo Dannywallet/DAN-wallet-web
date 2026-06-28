@@ -6,7 +6,7 @@ export default function TrustBadges() {
     <section className="border-y border-white/5 bg-surface/40 py-8">
       <div className="mx-auto max-w-7xl px-5 sm:px-8">
         <p className="mb-6 text-center text-xs font-medium uppercase tracking-widest text-muted">
-          Trusted &amp; independently verified
+          Secure &amp; transparent by design
         </p>
         <div className="flex flex-wrap items-center justify-center gap-x-10 gap-y-4">
           {TRUST_BADGES.map((b) => (

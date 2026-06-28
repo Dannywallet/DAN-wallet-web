@@ -18,7 +18,7 @@ export default function WebWallet() {
       <header className="flex h-14 shrink-0 items-center justify-between border-b border-white/10 bg-background/80 px-4 backdrop-blur-xl sm:px-6">
         <Link href="/" className="flex items-center gap-2">
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={`${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}/logo-src.png`} alt="Danny Wallet" className="h-8 w-8" />
+          <img src="/logo-src.png" alt="Danny Wallet" className="h-8 w-8" />
           <span className="text-base font-bold tracking-tight">Danny Wallet</span>
         </Link>
 

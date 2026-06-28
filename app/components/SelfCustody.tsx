@@ -75,23 +75,23 @@ function ReceiveMini() {
     <div className="flex h-full flex-col px-3.5 pb-5 pt-9 text-white">
       <div className="flex items-center justify-between">
         <span className="grid h-7 w-7 place-items-center rounded-full bg-white/8"><ChevronLeft className="h-3.5 w-3.5" /></span>
-        <span className="text-xs font-semibold">รับเหรียญ</span>
+        <span className="text-xs font-semibold">Receive</span>
         <span className="w-7" />
       </div>
-      <p className="mt-3 text-center text-[10px] font-medium text-brand-2">● เครือข่าย Danny Chain</p>
+      <p className="mt-3 text-center text-[10px] font-medium text-brand-2">● Danny Chain network</p>
       <div className="mt-3 flex justify-center">
         <div className="rounded-2xl bg-white p-2.5">
           <QrCode value={SHOW_ADDR} size={132} />
         </div>
       </div>
-      <p className="mt-3 text-center text-[9px] text-white/40">ที่อยู่กระเป๋าของคุณ</p>
+      <p className="mt-3 text-center text-[9px] text-white/40">Your wallet address</p>
       <p className="mt-1 truncate rounded-lg bg-white/5 px-2 py-1.5 text-center font-mono text-[9px]">{SHOW_ADDR}</p>
       <div className="mt-2 grid grid-cols-2 gap-1.5">
-        <span className="flex items-center justify-center gap-1 rounded-lg bg-gradient-to-r from-brand to-brand-2 py-1.5 text-[10px] font-semibold"><Copy className="h-3 w-3" /> คัดลอก</span>
-        <span className="flex items-center justify-center gap-1 rounded-lg bg-white/8 py-1.5 text-[10px] font-semibold"><Share2 className="h-3 w-3" /> แชร์</span>
+        <span className="flex items-center justify-center gap-1 rounded-lg bg-gradient-to-r from-brand to-brand-2 py-1.5 text-[10px] font-semibold"><Copy className="h-3 w-3" /> Copy</span>
+        <span className="flex items-center justify-center gap-1 rounded-lg bg-white/8 py-1.5 text-[10px] font-semibold"><Share2 className="h-3 w-3" /> Share</span>
       </div>
       <p className="mt-2 rounded-lg bg-accent-yellow/10 px-2 py-1.5 text-[8px] leading-relaxed text-accent-yellow">
-        ⚠ ส่งเฉพาะสินทรัพย์บนเครือข่าย Danny Chain มายังที่อยู่นี้
+        ⚠ Only send assets on the Danny Chain network to this address
       </p>
     </div>
   );
@@ -118,9 +118,9 @@ function ChartMini({ dan, chart, balance, value }: { dan: Tok; chart: ChartPoint
         ) : <span className="h-6 w-6 rounded-full bg-white/10" />}
       </div>
       <div className="mt-2 text-center">
-        <p className="text-[9px] text-white/40">ราคา DAN</p>
+        <p className="text-[9px] text-white/40">DAN price</p>
         <p className="text-xl font-bold">{fmtPrice(dan.price)}</p>
-        <p className={`text-[10px] font-medium ${up ? "text-accent-green" : "text-accent-red"}`}>{up ? "▲ " : "▼ "}{Math.abs(dan.change).toFixed(2)}% · 24 ชม.</p>
+        <p className={`text-[10px] font-medium ${up ? "text-accent-green" : "text-accent-red"}`}>{up ? "▲ " : "▼ "}{Math.abs(dan.change).toFixed(2)}% · 24h</p>
       </div>
       <div className="mt-2 flex items-center gap-2 rounded-xl bg-white/[0.05] px-2.5 py-2">
         {dan.logo ? (
@@ -128,17 +128,17 @@ function ChartMini({ dan, chart, balance, value }: { dan: Tok; chart: ChartPoint
           <img src={dan.logo} alt="" className="h-7 w-7 rounded-full" />
         ) : <span className="h-7 w-7 rounded-full bg-white/10" />}
         <div className="flex-1">
-          <p className="text-[8px] text-white/40">ยอดถือครอง</p>
+          <p className="text-[8px] text-white/40">Holdings</p>
           <p className="text-[11px] font-bold">{fmtAmt(balance)} DAN</p>
         </div>
         <p className="text-sm font-bold">{fmtUsd(value)}</p>
       </div>
       <div className="mt-2 flex items-center justify-between">
-        <p className="text-[10px] font-semibold">กราฟราคา</p>
+        <p className="text-[10px] font-semibold">Price chart</p>
         <div className="flex gap-1 text-[7px]">
-          <span className="rounded bg-white/8 px-1.5 py-0.5">1 ชม.</span>
-          <span className="rounded bg-gradient-to-r from-brand to-brand-2 px-1.5 py-0.5">24 ชม.</span>
-          <span className="rounded bg-white/8 px-1.5 py-0.5">7 วัน</span>
+          <span className="rounded bg-white/8 px-1.5 py-0.5">1h</span>
+          <span className="rounded bg-gradient-to-r from-brand to-brand-2 px-1.5 py-0.5">24h</span>
+          <span className="rounded bg-white/8 px-1.5 py-0.5">7d</span>
         </div>
       </div>
       <div className="mt-1.5 rounded-xl bg-white/[0.04] p-1.5">
@@ -149,10 +149,10 @@ function ChartMini({ dan, chart, balance, value }: { dan: Tok; chart: ChartPoint
         ) : <div className="h-[52px]" />}
       </div>
       <div className="mt-2 grid grid-cols-2 gap-1.5">
-        <Stat label="มาร์เก็ตแคป" value={"$" + compact(dan.mcap)} />
-        <Stat label="วอลุ่ม 24 ชม." value={"$" + compact(dan.vol)} />
-        <Stat label="ผู้ถือ" value={compact(dan.holders)} />
-        <Stat label="ซัพพลายรวม" value={compact(dan.supply)} />
+        <Stat label="Market cap" value={"$" + compact(dan.mcap)} />
+        <Stat label="24h volume" value={"$" + compact(dan.vol)} />
+        <Stat label="Holders" value={compact(dan.holders)} />
+        <Stat label="Total supply" value={compact(dan.supply)} />
       </div>
     </div>
   );
@@ -173,18 +173,18 @@ function SwapMini({ dan, to, danBal, toBal }: { dan: Tok; to: { symbol: string; 
     <div className="flex h-full flex-col px-3 pb-3 pt-9 text-white">
       <div className="flex items-center justify-between">
         <span className="grid h-7 w-7 place-items-center rounded-full bg-white/8"><ChevronLeft className="h-3.5 w-3.5" /></span>
-        <span className="text-xs font-semibold">สลับเหรียญ</span>
+        <span className="text-xs font-semibold">Swap</span>
         <span className="text-[8px] text-white/40">dandex</span>
       </div>
 
       <div className="relative mt-2 space-y-1.5">
-        <SwapBox label="จ่าย" bal={`${fmtAmt(danBal)} DAN`} sym="DAN" logo={dan.logo} max />
+        <SwapBox label="Pay" bal={`${fmtAmt(danBal)} DAN`} sym="DAN" logo={dan.logo} max />
         <span className="absolute left-1/2 top-1/2 z-10 grid h-7 w-7 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full bg-gradient-to-br from-brand to-brand-2"><ArrowRightLeft className="h-3.5 w-3.5" /></span>
-        <SwapBox label="รับ" bal={`${fmtAmt(toBal)} ${to.symbol}`} sym={to.symbol} logo={to.logo} />
+        <SwapBox label="Receive" bal={`${fmtAmt(toBal)} ${to.symbol}`} sym={to.symbol} logo={to.logo} />
       </div>
 
       <div className="mt-2 space-y-1.5 rounded-xl bg-white/[0.05] p-2.5 text-[9px]">
-        <div className="flex justify-between"><span className="text-white/40">อัตราแลกเปลี่ยน</span><span className="font-medium">{rate ? `1 DAN ≈ ${fmtAmt(rate)} ${to.symbol}` : "—"}</span></div>
+        <div className="flex justify-between"><span className="text-white/40">Exchange rate</span><span className="font-medium">{rate ? `1 DAN ≈ ${fmtAmt(rate)} ${to.symbol}` : "—"}</span></div>
         <div className="flex items-center justify-between">
           <span className="text-white/40">Slippage</span>
           <div className="flex gap-1 text-[7px]">
@@ -193,13 +193,13 @@ function SwapMini({ dan, to, danBal, toBal }: { dan: Tok; to: { symbol: string; 
             <span className="rounded bg-white/8 px-1.5 py-0.5">2%</span>
           </div>
         </div>
-        <div className="flex justify-between"><span className="text-white/40">มูลค่าโดยประมาณ</span><span className="font-medium">$0.00</span></div>
+        <div className="flex justify-between"><span className="text-white/40">Estimated value</span><span className="font-medium">$0.00</span></div>
       </div>
 
       <p className="mt-2 flex items-start gap-1 rounded-lg bg-accent-green/[0.08] px-2 py-1.5 text-[8px] text-white/50">
-        <ShieldCheck className="mt-0.5 h-2.5 w-2.5 shrink-0 text-accent-green" /> สลับจริงผ่าน router ของ dandex — ลงนามด้วยบัญชี 0x717F…3459
+        <ShieldCheck className="mt-0.5 h-2.5 w-2.5 shrink-0 text-accent-green" /> Real swap via the dandex router — signed with account 0x717F…3459
       </p>
-      <div className="mt-2 rounded-xl bg-white/8 py-2.5 text-center text-[11px] font-semibold text-white/50">กรอกจำนวน</div>
+      <div className="mt-2 rounded-xl bg-white/8 py-2.5 text-center text-[11px] font-semibold text-white/50">Enter amount</div>
     </div>
   );
 }
@@ -208,7 +208,7 @@ function SwapBox({ label, bal, sym, logo, max }: { label: string; bal: string; s
     <div className="rounded-xl bg-white/[0.05] p-2.5">
       <div className="flex items-center justify-between text-[8px] text-white/40">
         <span>{label}</span>
-        <span>คงเหลือ {bal}{max && <span className="ml-1 text-brand-2">สูงสุด</span>}</span>
+        <span>Balance {bal}{max && <span className="ml-1 text-brand-2">Max</span>}</span>
       </div>
       <div className="mt-1 flex items-center justify-between">
         <span className="text-lg font-bold">0.00</span>

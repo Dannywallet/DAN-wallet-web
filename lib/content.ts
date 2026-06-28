@@ -1,20 +1,20 @@
 import {
-  Layers,
   Repeat,
-  LifeBuoy,
   ShieldAlert,
   EyeOff,
   Network,
   KeyRound,
+  Code2,
+  BadgeCheck,
   type LucideIcon,
 } from "lucide-react";
 
 export const NAV_LINKS = [
-  { label: "Features", href: "#features" },
-  { label: "Security", href: "#security" },
-  { label: "DeFi", href: "#defi" },
-  { label: "Analytics", href: "#analytics" },
-  { label: "FAQ", href: "#faq" },
+  { label: "Features", href: "/#features" },
+  { label: "Security", href: "/#security" },
+  { label: "DeFi", href: "/#defi" },
+  { label: "Analytics", href: "/#analytics" },
+  { label: "FAQ", href: "/#faq" },
 ] as const;
 
 export const TRUST_BADGES = [
@@ -32,19 +32,19 @@ export type Feature = {
 
 export const FEATURES: Feature[] = [
   {
-    icon: Layers,
-    title: "Multi-Chain",
-    body: "Hold and manage thousands of assets across Bitcoin, Ethereum, and every major chain — from one clean interface.",
+    icon: Network,
+    title: "Danny Chain Native",
+    body: "Manage DAN and every token on Danny Chain with live on-chain prices, charts, and balances from dannyscan and dancharts — all in one clean interface.",
+  },
+  {
+    icon: KeyRound,
+    title: "Self-Custody",
+    body: "Standard BIP39 recovery phrases keep your keys on your device, encrypted with a PIN. Move in and out of Danny Wallet freely — never locked to us.",
   },
   {
     icon: Repeat,
-    title: "Universal",
-    body: "Standard recovery phrases mean you can move in and out of Danny Wallet freely. Your wallet is never locked to us.",
-  },
-  {
-    icon: LifeBuoy,
-    title: "Practical",
-    body: "Backup and restore in seconds. Recover everything from a single phrase whenever you need it.",
+    title: "Built-in DeFi",
+    body: "Swap tokens instantly on the dandex DEX and connect to dApps via WalletConnect — sign transactions you can actually read, right inside your wallet.",
   },
 ];
 
@@ -71,16 +71,19 @@ export const SECURITY: Feature[] = [
   },
 ];
 
-export const RELIABLE = [
+export const RELIABLE: Feature[] = [
   {
+    icon: Code2,
     title: "Open Source",
     body: "Every line of code is public. Don't trust — verify.",
   },
   {
+    icon: KeyRound,
     title: "Non-Custodial",
     body: "Keys are generated and stored only on your device. We never touch your funds.",
   },
   {
+    icon: BadgeCheck,
     title: "Third-Party Audited",
     body: "Reviewed by independent security firms and protected by a public bug bounty.",
   },

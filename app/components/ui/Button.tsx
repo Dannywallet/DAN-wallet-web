@@ -35,9 +35,11 @@ export default function Button({
   size = "md",
   className = "",
 }: Props) {
+  const external = /^https?:\/\//.test(href);
   return (
     <Link
       href={href}
+      {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
       className={`${base} ${variants[variant]} ${sizes[size]} ${className}`}
     >
       {children}

@@ -26,9 +26,9 @@ export default function Navbar() {
       }`}
     >
       <nav className="mx-auto flex h-16 max-w-7xl items-center justify-between px-5 sm:px-8">
-        <Link href="#top" className="flex items-center gap-2">
+        <Link href="/" className="flex items-center gap-2">
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={`${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}/logo-src.png`} alt="DAN Wallet" className="h-8 w-8" />
+          <img src="/logo-src.png" alt="DAN Wallet" className="h-8 w-8" />
           <span className="text-lg font-bold tracking-tight">Danny Wallet</span>
         </Link>
 
@@ -46,9 +46,9 @@ export default function Navbar() {
 
         <div className="hidden items-center gap-3 md:flex">
           <Button href="https://app.dannywallet.com/desktop" variant="secondary">
-            Launch App
+            Desktop Wallet
           </Button>
-          <Button href="#download">Download</Button>
+          <Button href="/#download">Download</Button>
         </div>
 
         <button
@@ -80,9 +80,9 @@ export default function Navbar() {
               variant="secondary"
               className="mt-2 w-full"
             >
-              Launch App
+              Desktop Wallet
             </Button>
-            <Button href="#download" className="w-full">
+            <Button href="/#download" className="w-full">
               Download
             </Button>
           </div>

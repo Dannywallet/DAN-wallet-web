@@ -1,42 +1,36 @@
-# Danny Wallet — Landing Page
+This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-Marketing landing page for **Danny Wallet**, a self-custody, multi-chain crypto wallet built for real-world security on Danny Chain.
+## Getting Started
 
-🌐 **Live:** [dannywallet.com](https://dannywallet.com) · **App:** [app.dannywallet.com](https://app.dannywallet.com) · **Desktop wallet:** [app.dannywallet.com/desktop](https://app.dannywallet.com/desktop)
-
-## Features
-
-- Responsive marketing site (hero, features, security, FAQ, download CTA)
-- **Live phone mockups** that pull real on-chain data from the wallet API (`app.dannywallet.com/api/danny/*`) — balances, token prices, charts, swap rates
-- `/webwallet` embeds the desktop wallet via iframe
-- Built for **static export** — no Node runtime needed in production
-
-## Tech Stack
-
-- [Next.js 15](https://nextjs.org) (App Router) · React 19 · TypeScript
-- Tailwind CSS v4
-- `lucide-react` icons
-
-## Development
+First, run the development server:
 
 ```bash
-npm install
-npm run dev      # http://localhost:3000
-npm run build    # static export -> ./out
-npm run lint
+npm run dev
+# or
+yarn dev
+# or
+pnpm dev
+# or
+bun dev
 ```
 
-## Deployment
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-This site ships as a **static export** (`output: "export"` in `next.config.ts`).
+You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-| Target | How |
-|---|---|
-| **Production** (dannywallet.com) | `npm run build` → upload `./out` to Nginx at `/var/www/dannywallet` (served from root) |
-| **GitHub Pages** | Automated via `.github/workflows/deploy.yml` — builds with `GITHUB_PAGES=true` (applies `basePath: /DAN-wallet-web`) and deploys on every push to `main` |
+This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
-The `GITHUB_PAGES` env flag toggles the sub-path config so the same codebase deploys cleanly to both the root-domain VPS and the Pages sub-path.
+## Learn More
 
-## License
+To learn more about Next.js, take a look at the following resources:
 
-Private project. All rights reserved.
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+
+## Deploy on Vercel
+
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.

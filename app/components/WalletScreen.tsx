@@ -45,17 +45,17 @@ function fmtPrice(p: number): string {
 }
 
 const actions = [
-  { icon: ArrowUp, label: "ส่ง" },
-  { icon: ArrowDown, label: "รับ" },
-  { icon: ArrowRightLeft, label: "สลับ" },
-  { icon: Compass, label: "สำรวจ" },
+  { icon: ArrowUp, label: "Send" },
+  { icon: ArrowDown, label: "Receive" },
+  { icon: ArrowRightLeft, label: "Swap" },
+  { icon: Compass, label: "Explore" },
 ];
 const navItems = [
-  { icon: Home, label: "หน้าหลัก" },
-  { icon: Activity, label: "กิจกรรม" },
+  { icon: Home, label: "Home" },
+  { icon: Activity, label: "Activity" },
   { icon: Compass, label: "Explorer" },
-  { icon: ArrowRightLeft, label: "สลับ" },
-  { icon: Settings, label: "ตั้งค่า" },
+  { icon: ArrowRightLeft, label: "Swap" },
+  { icon: Settings, label: "Settings" },
 ];
 
 /** Wallet home screen mockup — ดีไซน์ตามแอปจริง + ราคา/โลโก้/24ชม. สดจาก Danny Chain. */
@@ -120,7 +120,7 @@ export default function WalletScreen() {
         {/* network header */}
         <div className="flex items-center justify-between">
           <div>
-            <p className="text-[9px] text-white/40">เครือข่าย</p>
+            <p className="text-[9px] text-white/40">Network</p>
             <div className="flex items-center gap-1.5">
               <span className="h-1.5 w-1.5 rounded-full bg-accent-green" />
               <span className="text-sm font-semibold">Danny Chain</span>
@@ -128,7 +128,7 @@ export default function WalletScreen() {
           </div>
           <div className="flex items-center gap-1.5">
             <span className="flex items-center gap-1 rounded-full border border-accent-green/30 bg-accent-green/10 px-2 py-0.5 text-[8px] font-medium text-accent-green">
-              <ShieldCheck className="h-2.5 w-2.5" /> ข้อมูลจริง
+              <ShieldCheck className="h-2.5 w-2.5" /> Live
               {live && <span className="ml-0.5 h-1 w-1 rounded-full bg-accent-green" />}
             </span>
             <span className="grid h-6 w-6 place-items-center rounded-full bg-white/5 text-white/50">
@@ -141,18 +141,18 @@ export default function WalletScreen() {
         <div className="relative overflow-hidden rounded-2xl border border-white/10 bg-white/[0.04] p-3.5">
           <div className="flex items-center justify-between">
             <span className="flex items-center gap-1 rounded-full bg-white/8 px-2 py-0.5 text-[9px]">
-              บัญชี 1 <span className="text-white/40">0x717F…3459</span>
+              Account 1 <span className="text-white/40">0x717F…3459</span>
               <ChevronRight className="h-2.5 w-2.5 text-white/40" />
             </span>
             <Eye className="h-3.5 w-3.5 text-white/40" />
           </div>
           <div className="mt-2 flex items-end justify-between gap-2">
             <div className="min-w-0">
-              <p className="text-[9px] uppercase tracking-wide text-white/40">ยอดรวมทั้งหมด</p>
+              <p className="text-[9px] uppercase tracking-wide text-white/40">Total balance</p>
               <p className="mt-0.5 text-2xl font-bold tracking-tight">{fmtUsd(total)}</p>
               <p className={`mt-0.5 text-[10px] font-medium ${up ? "text-accent-green" : "text-accent-red"}`}>
                 {up ? "▲ +" : "▼ "}
-                {Math.abs(totalChange).toFixed(2)}% <span className="text-white/40">24 ชม.</span>
+                {Math.abs(totalChange).toFixed(2)}% <span className="text-white/40">24h</span>
               </p>
             </div>
             {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -174,8 +174,8 @@ export default function WalletScreen() {
 
         {/* assets */}
         <div className="flex items-center justify-between pt-0.5">
-          <p className="text-xs font-semibold">สินทรัพย์ของฉัน</p>
-          <span className="text-[9px] text-white/40">{rows.length} เหรียญ</span>
+          <p className="text-xs font-semibold">My assets</p>
+          <span className="text-[9px] text-white/40">{rows.length} coins</span>
         </div>
         <div className="space-y-1.5">
           {rows.slice(0, 3).map((t) => (
@@ -191,7 +191,7 @@ export default function WalletScreen() {
               <div className="min-w-0 flex-1">
                 <p className="flex items-center gap-1 text-[11px] font-semibold">
                   {t.symbol}
-                  {t.isNative && <span className="rounded bg-brand/30 px-1 text-[7px] text-brand-2">เนทีฟ</span>}
+                  {t.isNative && <span className="rounded bg-brand/30 px-1 text-[7px] text-brand-2">Native</span>}
                 </p>
                 <p className="text-[9px] text-white/40">{fmtPrice(t.price)}</p>
               </div>

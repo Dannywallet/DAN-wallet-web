@@ -14,8 +14,8 @@ const META: [string, string][] = [
   ["Scope", "Browser wallet · Desktop"],
   ["Network", "Danny Chain (EVM 5069)"],
   ["Audit type", "Internal source review"],
-  ["Date", "June 25, 2026 (rev. 1.1)"],
-  ["Version", "1.1"],
+  ["Date", "September 10, 2026 (rev. 1.2)"],
+  ["Version", "1.2"],
 ];
 
 const SEVERITY = [
@@ -26,9 +26,9 @@ const SEVERITY = [
 ];
 
 const CATEGORIES: { title: string; note: string; ok: boolean }[] = [
-  { title: "Cryptography & key management", note: "PBKDF2-SHA256 (210k iters) + AES-256-GCM, random salt/IV per blob, GCM-tag PIN check", ok: true },
-  { title: "PIN brute-force protection", note: "Exponential cooldown after 5 fails, wallet wipe after 10", ok: true },
-  { title: "Transaction & message signing", note: "PIN required every time, no auto-sign; calldata decoded & warned", ok: true },
+  { title: "Cryptography & key management", note: "scrypt (N=2^16, r=8, p=1 · 64 MB per guess) + AES-256-GCM, random salt/IV per blob, GCM-tag PIN check; older PBKDF2 vaults are re-encrypted at the next unlock", ok: true },
+  { title: "PIN brute-force protection", note: "12+ digit PIN or 8+ character passphrase; exponential cooldown after 5 fails, wallet wipe after 10. The counter is stored on the device, so offline guessing is held back by scrypt and the minimum length", ok: true },
+  { title: "Transaction & message signing", note: "PIN required for every in-app send/swap, no auto-sign; each WalletConnect request needs approval and must match the account on screen; calldata decoded & warned", ok: true },
   { title: "dApp browser (iframe)", note: "Cross-origin + no provider injection → dApp can't reach keys", ok: true },
   { title: "Data storage & privacy", note: "Only encrypted blobs stored; no plaintext key/seed; no tracking", ok: true },
   { title: "Network & headers", note: "HTTPS, CSP frame-ancestors, nosniff, referrer-policy", ok: true },
@@ -70,7 +70,7 @@ export default function SecurityPage() {
           rel="noopener noreferrer"
           className="mt-5 inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-5 py-2.5 text-sm font-semibold backdrop-blur transition-all hover:bg-white/10"
         >
-          <FileDown className="h-4 w-4" /> Download full report (PDF)
+          <FileDown className="h-4 w-4" /> Download full report (PDF, rev. 1.1)
         </a>
 
         {/* Overview */}
@@ -107,10 +107,10 @@ export default function SecurityPage() {
           <h2 className="text-xl font-semibold">Summary</h2>
           <p className="mt-3 leading-relaxed text-muted">
             Danny Wallet is non-custodial — private keys and recovery phrases are generated and stored only on the
-            user&apos;s device, encrypted with a PIN. The core architecture follows good practice: WebCrypto
-            (PBKDF2-SHA256 with 210,000 iterations + AES-256-GCM), PIN brute-force protection, no secret logging, and a
-            PIN is required for every signing action. One high-severity issue (Permit phishing via typed-data signing)
-            was found and has been fixed and deployed.
+            user&apos;s device, encrypted with a PIN or passphrase. The core architecture follows good practice: a
+            memory-hard key derivation (scrypt) with AES-256-GCM, a minimum of 12 digits or 8 characters for the unlock
+            secret, PIN brute-force protection, no secret logging, and explicit approval for every signing action. One
+            high-severity issue (Permit phishing via typed-data signing) was found and has been fixed and deployed.
           </p>
         </section>
 
@@ -172,6 +172,24 @@ export default function SecurityPage() {
               "Dependency overrides removed @stablelib/ed25519 and patched elliptic — npm production criticals reduced to 0.",
               "Unlimited token approvals (approve max / Permit) now require an explicit acknowledgement checkbox before signing.",
               "Import / create flows now warn that seedless accounts are not in the recovery phrase and must be backed up.",
+            ].map((r) => (
+              <div key={r} className="flex items-start gap-3 rounded-2xl border border-white/10 bg-white/[0.03] p-4">
+                <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-accent-green" />
+                <p className="text-sm leading-relaxed text-muted">{r}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* rev 1.2 remediations */}
+        <section className="mt-10">
+          <h2 className="text-xl font-semibold">Remediations (rev. 1.2)</h2>
+          <div className="mt-4 space-y-2.5">
+            {[
+              "Key derivation moved from PBKDF2-SHA256 to scrypt (N=2^16, r=8, p=1), so every guess costs about 64 MB of memory. Existing vaults are re-encrypted automatically at the next unlock.",
+              "The 6-digit PIN was replaced by a minimum of 12 digits or an 8-character passphrase. Wallets that still use a short PIN must set a new one right after unlocking.",
+              "WalletConnect: the signing key is bound to the account shown on screen. Switching accounts drops it, and any request that names a different account is rejected.",
+              "Key-derivation errors (e.g. low memory) are no longer counted as wrong PIN attempts, so they cannot trigger the wallet wipe.",
             ].map((r) => (
               <div key={r} className="flex items-start gap-3 rounded-2xl border border-white/10 bg-white/[0.03] p-4">
                 <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-accent-green" />
